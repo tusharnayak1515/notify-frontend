@@ -1,0 +1,45 @@
+#navbar {
+    min-height: 13vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.25vw solid rgb(77, 76, 76);
+    background-color: white;
+}
+
+/* #navbar #logo {
+    
+} */
+
+#navbar #logo h1 {
+    font-size: 3vw;
+    margin-left: 3vw;
+    cursor: pointer;
+}
+
+#navbar #links ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3vh;
+    /* background-color: aqua; */
+}
+
+#navbar #links ul li {
+    margin: 0 0.5vh;
+    /* padding: 0.5vw 1vw; */
+}
+
+#navbar #links ul li a {
+    color: black;
+    padding: 0.5vw;
+    font-size: 1.5vw;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#navbar #links ul li a:hover {
+    color: white;
+    background-color: black;
+    transition: all ease-in-out 0.5s;
+}
