@@ -1,21 +1,21 @@
 .todoform {
-    min-height: 20vh;
-    width: 33%;
-    margin: 5vh auto;
-    padding: 1vw;
+    /* min-height: 20vh; */
+    width: 40%;
+    margin: 3vh auto;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    justify-content: center;
     align-items: center;
-    border: none;
-    border-radius: 1vw;
-    background-color: rgb(146, 43, 146);
+    /* border: none;
+    border-radius: 1vw; */
+    /* background-color: rgb(146, 43, 146); */
 }
 
 .todoform input {
-    font-size: 2vw;
-    margin-bottom: 2vh;
+    font-size: 1.3rem;
+    margin: 0 2vh;
     padding: 0.5vw 0.8vw;
     outline: none;
-    border: none;
+    border: 0.2vw solid black;
     border-radius: 0.5vw;
 }

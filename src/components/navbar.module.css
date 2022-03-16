@@ -33,6 +33,8 @@
 #navbar #links ul li a {
     color: black;
     padding: 0.5vw;
+    border: none;
+    border-radius: 0.5vw;
     font-size: 1.5vw;
     font-weight: bold;
     cursor: pointer;
