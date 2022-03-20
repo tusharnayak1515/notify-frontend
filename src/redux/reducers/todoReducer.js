@@ -1,155 +1,117 @@
-import axios from "axios";
-
 let isTodo;
-if(localStorage.getItem("mytodos")===null) {
+if (localStorage.getItem("todolist") === null) {
     isTodo = [];
 }
 else {
-    isTodo = JSON.parse(localStorage.getItem("mytodos"))
+    isTodo = JSON.parse(localStorage.getItem("todolist"));
+}
+
+let isError;
+if (localStorage.getItem("error") === null) {
+    isError = null;
+}
+else {
+    isError = JSON.parse(localStorage.getItem("error"));
 }
 
 const initTodo = {
-    todos: isTodo
+    todos: isTodo,
+    error: isError
 }
 
-const userReducer = async (state=initTodo,action) => {
+const todoReducer = (state = initTodo, action) => {
 
-    if(action.type === 'addtodo') {
-        const token = localStorage.getItem("token");
-        if(token) {
-            const {text,date,isComplete} = action.payload;
-            try {
-                const res = await axios.post("http://localhost:5000/api/todos/addtodo",{
-                    headers: { "auth-token": token },
-                    text: text,
-                    date: date,
-                    isComplete: isComplete
-                });
-
-                if(res.data.error) {
-                    return res.data.error;
-                }
-
-                if(res.data.success) {
-                    return {
-                        ...state,
-                        todos : [
-                            ...state.todos,
-                            res.data.mytodo
-                        ]
-                    }
-                }
+    if (action.type === 'addtodo') {
+        const { error, mytodo } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error
             }
-            catch(error) {
-                localStorage.setItem("error",error);
-            }
+        }
+        return {
+            ...state,
+            todos: [
+                ...state.todos,
+                mytodo
+            ]
         }
     }
 
-    if(action.type === 'fetchalltodos') {
-        const token = localStorage.getItem("token");
-        if(token) {
-            try {
-                const res = await axios.get("http://localhost:5000/api/todos/fetchAlltodos",{
-                    headers: { "auth-token": token },
-                });
-
-                if(res.data.error) {
-                    return res.data.error;
-                }
-
-                if(res.data.success) {
-                    return {
-                        ...state,
-                        todos : res.data.todos
-                    }
-                }
+    else if (action.type === 'fetchalltodos') {
+        const { error, todos } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error
             }
-            catch(error) {
-                localStorage.setItem("error",error);
-            }
+        }
+        return {
+            ...state,
+            todos: todos
         }
     }
 
-    if(action.type === 'deletetodo') {
-        const token = localStorage.getItem("token");
-        const {id} = action.payload;
-        if(token) {
-            try {
-                const res = await axios.get(`http://localhost:5000/api/todos/deletetodo/${id}`,{
-                    headers: { "auth-token": token },
-                });
-
-                if(res.data.error) {
-                    return res.data.error;
-                }
-
-                if(res.data.success) {
-                    return {
-                        ...state,
-                        todos : res.data.filteredTodos
-                    }
-                }
+    else if (action.type === 'deletetodo') {
+        const { todos, error } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error
             }
-            catch(error) {
-                localStorage.setItem("error",error);
-            }
+        }
+        return {
+            ...state,
+            todos: todos
         }
     }
 
-    if(action.type === 'edittodo') {
-        const token = localStorage.getItem("token");
-        const {id,text,date} = action.payload;
-        if(token) {
-            try {
-                const res = await axios.get(`http://localhost:5000/api/todos/edittodo/${id}`,{
-                    headers: { "auth-token": token },
-                    text: text,
-                    date: date
-                });
-
-                if(res.data.error) {
-                    return res.data.error;
-                }
-
-                if(res.data.success) {
-                    return {
-                        ...state,
-                        todos : res.data.updatedTodos
-                    }
-                }
+    else if (action.type === 'edittodo') {
+        const { mytodo, error } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error
             }
-            catch(error) {
-                localStorage.setItem("error",error);
-            }
+        }
+        return {
+            ...state,
+            todos: [...state.todos].map(todo => { return todo._id === mytodo._id ? mytodo : todo })
         }
     }
 
-    if(action.type === 'completetodo') {
-        const token = localStorage.getItem("token");
-        const {id} = action.payload;
-        if(token) {
-            try {
-                const res = await axios.get(`http://localhost:5000/api/todos/complete/${id}`,{
-                    headers: { "auth-token": token }
-                });
-
-                if(res.data.error) {
-                    return res.data.error;
-                }
-
-                if(res.data.success) {
-                    return {
-                        ...state,
-                        todos : res.data.updatedTodos
-                    }
-                }
-            }
-            catch(error) {
-                localStorage.setItem("error",error);
+    else if (action.type === 'completetodo') {
+        const { todos, error } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error
             }
         }
+        return {
+            ...state,
+            todos: todos
+        }
+    }
+
+    else if (action.type === 'login') {
+        const { todos } = action.payload;
+        return {
+            ...state,
+            todos: todos
+        };
+    }
+
+    else if (action.type === 'logout') {
+        return {
+            ...state,
+            todos: []
+        };
+    }
+
+    else {
+        return state;
     }
 }
 
-export default userReducer;
+export default todoReducer;

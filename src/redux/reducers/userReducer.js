@@ -1,5 +1,3 @@
-import axios from "axios";
-
 let isUser;
 if (localStorage.getItem("token") === null) {
     isUser = null;
@@ -7,106 +5,97 @@ if (localStorage.getItem("token") === null) {
 else {
     isUser = localStorage.getItem("token");
 }
+
+let isError;
+if (localStorage.getItem("error") === null) {
+    isError = null;
+}
+else {
+    isError = JSON.parse(localStorage.getItem("error"));
+}
+
+let isProfile;
+if (localStorage.getItem("profile") === null) {
+    isProfile = [];
+}
+else {
+    isProfile = JSON.parse(localStorage.getItem("profile"));
+}
+
 const initUser = {
-    user: isUser
+    profile: isProfile,
+    user: isUser,
+    error: isError
 };
 
-const userReducer = async (state = initUser, action) => {
+const userReducer = (state = initUser, action) => {
 
     if (action.type === 'register') {
-        const { name, username, email, password } = action.payload;
-        try {
-            const res = await axios.post("http://localhost:5000/api/auth/register", {
-                name: name,
-                username: username,
-                email: email,
-                password: password
-            });
-
-            if(res.data.error) {
-                return res.data.error;
-            }
-
-            if (res.data.success) {
-                localStorage.setItem("token", res.data.authToken);
-                return {
-                    ...state,
-                    user: res.data.authToken
-                }
+        const { user, error } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error
             }
         }
-        catch (error) {
-            localStorage.setItem("error", error);
+        return {
+            ...state,
+            user: user
         }
     }
 
-    if (action.type === 'login') {
-        const { email, password } = action.payload;
-        try {
-            const res = await axios.post("http://localhost:5000/api/auth/login", {
-                email: email,
-                password: password
-            });
-            if (res.data.error) {
-                return res.data.error;
-            }
-
-            if (res.data.success) {
-                localStorage.setItem("token", res.data.authToken);
-                return {
-                    ...state,
-                    user: res.data.authToken
-                }
+    else if (action.type === 'login') {
+        const { token, error } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error
             }
         }
-        catch (error) {
-            localStorage.setItem("error", error);
+        return {
+            ...state,
+            user: token
         }
     }
 
-    if (action.type === 'profile') {
-        try {
-            const token = window.localStorage.getItem("token");
-            if (token) {
-                const res = await axios.get("http://localhost:5000/api/auth/profile", {
-                    headers: { "auth-token": token }
-                });
-                if (res.data.error) {
-                    return res.data.error;
-                }
-
-                if (res.data.success) {
-                    return res.data.user;
-                }
+    else if (action.type === 'profile') {
+        const { user, error } = action.payload;
+        console.log(user);
+        if (error) {
+            return {
+                ...state,
+                error: error
             }
-
         }
-        catch (error) {
-            localStorage.setItem("error", error);
+        return {
+            ...state,
+            profile: user
         }
     }
 
-    if (action.type === 'deleteuser') {
-        const { id } = action.payload;
-        try {
-            const token = window.localStorage.getItem("token");
-            if (token) {
-                const res = await axios.get(`http://localhost:5000/api/auth/deleteuser/${id}`, {
-                    headers: { "auth-token": token },
-                });
-
-                if (res.data.error) {
-                    return res.data.error;
-                }
-
-                if (res.data.success) {
-                    return res.data.user;
-                }
+    else if (action.type === 'deleteuser') {
+        const { error } = action.payload;
+        if (error) {
+            return {
+                ...state,
+                error: error
             }
         }
-        catch (error) {
-            localStorage.setItem("error", error);
+        return {
+            ...state,
+            user: null,
+            profile: []
         }
+    }
+
+    else if (action.type === 'logout') {
+        localStorage.removeItem("token");
+        localStorage.removeItem("todolist");
+        return {
+            ...state,
+            profile: [],
+            user: null
+        };
     }
 
     else {

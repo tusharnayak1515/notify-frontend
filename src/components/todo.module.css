@@ -1,0 +1,24 @@
+.todo {
+    width: 80%;
+    margin: 1vh auto;
+    padding: 0.5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 0.2vw solid azure;
+    border-radius: 0.5vw;
+    /* background-color: rgb(209, 208, 208); */
+}
+
+.todo h2 {
+    cursor: pointer;
+    margin: 0 1vw;
+}
+
+.todo .edit:hover {
+    color: rgb(201, 130, 0);
+}
+
+.todo .delete:hover {
+    color: red;
+}

@@ -7,9 +7,10 @@
     border-radius: 0.5vw;
     cursor: pointer;
     /* background-color: rgb(92, 153, 1); */
-    background-color: rgb(108, 0, 197);
+    /* background-color: rgb(108, 0, 197); */
 }
 
 .btn:hover {
-    background-color: rgb(84, 1, 153);
+    opacity: 0.85;
+    /* background-color: rgb(84, 1, 153); */
 }

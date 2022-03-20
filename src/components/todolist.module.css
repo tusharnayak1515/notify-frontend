@@ -1,0 +1,16 @@
+.todolist {
+    /* min-height: 60vh; */
+    width: 30%;
+    margin: auto;
+    padding: 1vw;
+    border: 0.2vw solid black;
+    border-radius: 1vw;
+    background-color: rgb(217, 170, 255);
+}
+
+.notodos {
+    margin-top: 5vh;
+    font-size: 3vw;
+    text-align: center;
+    text-shadow: 0.3vw 0.3vw 0.8vw rgb(163, 0, 0);
+}

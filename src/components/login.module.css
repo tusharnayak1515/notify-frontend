@@ -1,0 +1,39 @@
+.login {
+    min-height: 87vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: blanchedalmond; */
+}
+
+.login h1 {
+    font-size: 2.5rem;
+    text-decoration: underline;
+    margin: 5vh 0 3vh 0;
+}
+
+.login .form {
+    min-height: 40vh;
+    width: 27%;
+    padding: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 0.2vw solid black;
+    border-radius: 0.8vw;
+    /* background-color: brown; */
+}
+
+.login .form input {
+    font-size: 1.5rem;
+    padding: 0.5vw 0.8vw;
+    outline: none;
+    border: 0.2vw solid black;
+    border-radius: 0.5vw;
+    margin-bottom: 2vh;
+}
+
+.login .form button {
+    width: 91%;
+}
