@@ -8,7 +8,7 @@
   align-items: center;
   border: 0.2vw solid black;
   border-radius: 0.5vw;
-  box-shadow: 0.2vw 0.2vw 0.2vw grey;
+  box-shadow: 0.2vw 0.2vw 0.2vw rgb(110, 110, 110);
 }
 
 .todo h2 {
@@ -52,7 +52,7 @@
     padding: 1.5vw;
     border: 0.5vw solid black;
     border-radius: 1vw;
-    box-shadow: 0.4vw 0.4vw 0.4vw grey;
+    box-shadow: 0.4vw 0.4vw 0.4vw rgb(110, 110, 110);
   }
 
 }
@@ -64,7 +64,7 @@
     padding: 1.5vw;
     border: 0.5vw solid black;
     border-radius: 1vw;
-    box-shadow: 0.4vw 0.4vw 0.4vw grey;
+    box-shadow: 0.4vw 0.4vw 0.4vw rgb(110, 110, 110);
   }
 
 }
@@ -75,7 +75,7 @@
     padding: 0.7vw;
     border: 0.3vw solid black;
     border-radius: 0.7vw;
-    box-shadow: 0.3vw 0.3vw 0.3vw grey;
+    box-shadow: 0.3vw 0.3vw 0.3vw rgb(110, 110, 110);
   }
 
 }

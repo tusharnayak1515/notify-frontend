@@ -49,6 +49,7 @@ const Todo = ({ todo, profile }) => {
         <div
           className={styles.todo}
           style={{
+            backgroundColor: todo.isComplete ? "" : "rgb(209, 208, 208)",
             opacity: todo.isComplete ? "0.5" : "1"
           }}
         >
@@ -84,6 +85,7 @@ const Todo = ({ todo, profile }) => {
         <div
           className={styles.todo}
           style={{
+            backgroundColor: todo.isComplete ? "" : "rgb(209, 208, 208)",
             opacity: todo.isComplete ? "0.6" : "1"
           }}
         >

@@ -36,8 +36,8 @@ const Profile = () => {
                 <h1 className={styles.name}>{user.name}</h1>
                 <h1 className={styles.username}>@{user.username}</h1>
                 <h1 className={styles.email}>{user.email}</h1>
+                {/* {token && user !== undefined && <h1 className={styles.todolength}>Todos: {user.todos.length}</h1>} */}
             </div>
-            {/* <h1>Todos: {user && user.todos.length}</h1> */}
             <h1 className={styles.todoHead}>My Todos</h1>
             <div className={styles.todos}>
                 {orderedTodos.map((todo) => {

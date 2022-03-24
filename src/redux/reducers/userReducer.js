@@ -46,7 +46,7 @@ const userReducer = (state = initUser, action) => {
     }
 
     else if (action.type === 'login') {
-        const { token, error } = action.payload;
+        const { token, profile, error } = action.payload;
         if (error) {
             return {
                 ...state,
@@ -56,6 +56,7 @@ const userReducer = (state = initUser, action) => {
         return {
             ...state,
             user: token,
+            profile: profile,
             error: null
         }
     }

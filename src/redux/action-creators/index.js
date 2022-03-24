@@ -253,16 +253,18 @@ export const login = ({ email, password }) => async (dispatch) => {
                 }
             });
         }
-
+        
         if (res.data.success) {
             localStorage.removeItem("error");
             localStorage.setItem("token", res.data.authToken);
+            localStorage.setItem("profile", JSON.stringify(res.data.user));
             return dispatch({
                 type: "login",
                 payload: {
                     error: null,
                     token: res.data.authToken,
-                    todos: res.data.mytodos
+                    todos: res.data.mytodos,
+                    profile: res.data.user
                 }
             })
         }
