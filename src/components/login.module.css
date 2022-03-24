@@ -7,18 +7,17 @@
 }
 
 .login h1 {
-    font-size: 2.5rem;
+    font-size: 3vw;
     text-decoration: underline;
     margin: 5vh 0 3vh 0;
 }
 
 .login .form {
-    min-height: 40vh;
-    width: 27%;
+    min-height: 25vh;
+    width: 25%;
     padding: 2vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     border: 0.2vw solid black;
     border-radius: 0.8vw;
@@ -26,7 +25,7 @@
 }
 
 .login .form input {
-    font-size: 1.5rem;
+    font-size: 1.5vw;
     padding: 0.5vw 0.8vw;
     outline: none;
     border: 0.2vw solid black;
@@ -35,5 +34,142 @@
 }
 
 .login .form button {
-    width: 91%;
+    width: 100%;
+}
+
+.error {
+    margin-top: 3.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.error p {
+    padding: 0.5vw 0.8vw;
+    border: 0.2vw solid red;
+    border-radius: 1vw;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 480px) {
+
+    .login h1 {
+        font-size: 7vw;
+        margin: 2.5vh 0 1.5vh 0;
+    }
+
+    .login .form {
+        min-height: 15vh;
+        width: 60%;
+        padding: 2.5vw;
+        border: 0.5vw solid black;
+        border-radius: 1.5vw;
+        /* background-color: brown; */
+    }
+    
+    .login .form input {
+        font-size: 4vw;
+        padding: 1vw 1.7vw;
+        border: 0.5vw solid black;
+        border-radius: 1vw;
+        margin-bottom: 1vh;
+    }
+    
+    .login .form button {
+        width: 100%;
+    }
+
+    .error {
+        margin-top: 2.5vh;
+        font-size: 4vw;
+    }
+    
+    .error p {
+        padding: 1vw 1.8vw;
+        border: 0.5vw solid red;
+        border-radius: 2vw;
+    }
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 720px) {
+
+    .login h1 {
+        font-size: 7vw;
+        margin: 2.5vh 0 1.5vh 0;
+    }
+
+    .login .form {
+        min-height: 25vh;
+        width: 60%;
+        padding: 2.5vw;
+        border: 0.5vw solid black;
+        border-radius: 1.5vw;
+        /* background-color: brown; */
+    }
+    
+    .login .form input {
+        font-size: 4vw;
+        padding: 1vw 1.6vw;
+        border: 0.5vw solid black;
+        border-radius: 1vw;
+        margin-bottom: 1vh;
+    }
+    
+    .login .form button {
+        width: 98%;
+    }
+
+    .error {
+        margin-top: 2.5vh;
+        font-size: 3.8vw;
+    }
+    
+    .error p {
+        padding: 1vw 1.8vw;
+        border: 0.5vw solid red;
+        border-radius: 2vw;
+    }
+
+}
+
+@media only screen and (min-width: 721px) and (max-width: 1024px) {
+
+    .login h1 {
+        font-size: 3.5vw;
+    }
+
+    .login .form {
+        min-height: 23vh;
+        width: 28%;
+        border: 0.3vw solid black;
+        border-radius: 0.8vw;
+        /* background-color: brown; */
+    }
+    
+    .login .form input {
+        font-size: 1.7vw;
+        padding: 0.7vw 1vw;
+        border: 0.3vw solid black;
+    }
+    
+    .login .form button {
+        width: 100%;
+    }
+
+    .error {
+        margin-top: 3vh;
+        font-size: 1.8vw;
+    }
+    
+    .error p {
+        padding: 0.7vw 1vw;
+        border: 0.3vw solid red;
+        border-radius: 1vw;
+    }
+
 }

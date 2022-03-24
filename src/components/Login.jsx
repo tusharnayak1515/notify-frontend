@@ -7,9 +7,11 @@ import Button from '../UI/Button';
 import styles from './login.module.css';
 
 const Login = () => {
+  const [isError, setIsError] = useState();
   const dispatch = useDispatch();
   let navigate = useNavigate();
   const token = useSelector(state => state.userReducer.user);
+  const error = useSelector((state) => state.userReducer.error);
   const [userDetails, setUserDetails] = useState({ email: "", password: "" });
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -30,7 +32,20 @@ const Login = () => {
     if (token) {
       navigate('/', { replace: true })
     }
-  }, [navigate,token]);
+    
+    if(error) {
+      setIsError(true);
+    }
+
+    if(!error) {
+      setIsError(false);
+    }
+
+    return ()=> {
+      localStorage.removeItem("error");
+      setIsError(false);
+    }
+  }, [navigate,token,error]);
 
   return (
     <div className={styles.login}>
@@ -40,6 +55,7 @@ const Login = () => {
         <input type="text" name='password' value={userDetails.password} onChange={onChangeHandler} placeholder="Enter your password" />
         <Button bg='green' onClick={onSubmit}>LOGIN</Button>
       </div>
+      {isError && <div className={styles.error}><p>{error}</p></div>}
     </div>
   )
 }

@@ -1,0 +1,47 @@
+.backdrop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    opacity: 0.8;
+    background-color: rgb(231, 231, 231);
+}
+
+.modal {
+    position: absolute;
+    width: 40%;
+    height: 30vh;
+    padding: 1vw 0;
+    top: 35%;
+    left: 30%;
+    z-index: 1000;
+    border: 0.2vw solid black;
+    border-radius: 1vw;
+    background-color: rgb(229, 198, 255);
+}
+
+.modal h1 {
+    position: relative;
+    font-size: 3vw;
+    left: 33%;
+    margin-bottom: 5vh;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.error p {
+    padding: 0.5vw 0.8vw;
+    border: 0.2vw solid red;
+    border-radius: 1vw;
+    background-color: white;
+}

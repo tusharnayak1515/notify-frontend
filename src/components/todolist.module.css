@@ -1,16 +1,88 @@
 .todolist {
-    /* min-height: 60vh; */
-    width: 30%;
-    margin: auto;
-    padding: 1vw;
-    border: 0.2vw solid black;
-    border-radius: 1vw;
-    background-color: rgb(217, 170, 255);
+  /* min-height: 60vh; */
+  width: 40%;
+  margin: 3vh auto;
+  padding: 1vw;
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  /* background-color: rgb(217, 170, 255); */
 }
 
 .notodos {
-    margin-top: 5vh;
+  margin-top: 3vh;
+  font-size: 3vw;
+  text-align: center;
+  /* text-shadow: 0.3vw 0.3vw 0.8vw rgb(163, 0, 0); */
+}
+
+.header {
+  width: 20vw;
+  padding: 0.5vw 1vw;
+  margin: 5vh auto 0 auto;
+  font-size: 3vw;
+  /* margin-top: 5vh; */
+  /* text-decoration: underline; */
+  text-transform: uppercase;
+  text-align: center;
+  border: 0.2vw solid black;
+  border-radius: 0.7vw;
+  background-color: white;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 480px) {
+
+  .header {
+    width: 40vw;
+    padding: 1vw 2vw;
+    margin: 4vh auto 0 auto;
+    font-size: 6vw;
+    border: 0.5vw solid black;
+    border-radius: 1.4vw;
+  }
+
+  .todolist {
+    width: 80%;
+    margin: 2.5vh auto;
+    /* background-color: rgb(217, 170, 255); */
+  }
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 720px) {
+
+  .header {
+    width: 34vw;
+    padding: 0.8vw 1.8vw;
+    margin: 3.5vh auto 0 auto;
+    font-size: 5vw;
+    border: 0.5vw solid black;
+    border-radius: 1.5vw;
+  }
+
+  .todolist {
+    width: 80%;
+    margin: 2.7vh auto;
+    /* background-color: rgb(217, 170, 255); */
+  }
+
+}
+
+@media only screen and (min-width: 721px) and (max-width: 1024px) {
+
+  .header {
+    width: 22vw;
+    padding: 0.6vw 1.2vw;
     font-size: 3vw;
-    text-align: center;
-    text-shadow: 0.3vw 0.3vw 0.8vw rgb(163, 0, 0);
+    border: 0.3vw solid black;
+    border-radius: 0.8vw;
+  }
+
+  .todolist {
+    width: 50%;
+    margin: 3vh auto;
+    /* background-color: rgb(217, 170, 255); */
+  }
+
 }

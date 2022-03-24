@@ -11,7 +11,7 @@ if (localStorage.getItem("error") === null) {
     isError = null;
 }
 else {
-    isError = JSON.parse(localStorage.getItem("error"));
+    isError = localStorage.getItem("error");
 }
 
 let isProfile;
@@ -40,7 +40,8 @@ const userReducer = (state = initUser, action) => {
         }
         return {
             ...state,
-            user: user
+            user: user,
+            error: null
         }
     }
 
@@ -54,13 +55,13 @@ const userReducer = (state = initUser, action) => {
         }
         return {
             ...state,
-            user: token
+            user: token,
+            error: null
         }
     }
 
     else if (action.type === 'profile') {
         const { user, error } = action.payload;
-        console.log(user);
         if (error) {
             return {
                 ...state,
@@ -69,7 +70,8 @@ const userReducer = (state = initUser, action) => {
         }
         return {
             ...state,
-            profile: user
+            profile: user,
+            error: null
         }
     }
 
@@ -84,17 +86,27 @@ const userReducer = (state = initUser, action) => {
         return {
             ...state,
             user: null,
-            profile: []
+            profile: [],
+            error: null
         }
     }
 
     else if (action.type === 'logout') {
         localStorage.removeItem("token");
+        localStorage.removeItem("profile");
         localStorage.removeItem("todolist");
         return {
             ...state,
             profile: [],
-            user: null
+            user: null,
+            error: null
+        };
+    }
+
+    else if (action.type === 'cancelerror') {
+        return {
+            ...state,
+            error: null
         };
     }
 

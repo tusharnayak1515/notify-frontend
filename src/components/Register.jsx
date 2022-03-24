@@ -7,9 +7,11 @@ import Button from '../UI/Button';
 import styles from './register.module.css';
 
 const Register = () => {
+  const [isError, setIsError] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const token = useSelector(state=> state.userReducer.user);
+  const error = useSelector((state) => state.userReducer.error);
   const [userDetails, setUserDetails] = useState({ name: "", username: "", email: "", password: "" });
   const onChangeHandler = (e) => {
     e.preventDefault();
@@ -30,7 +32,21 @@ const Register = () => {
     if (token) {
       navigate('/', { replace: true })
     }
-  },[navigate,token]);
+
+    if(error) {
+      setIsError(true);
+    }
+
+    if(!error) {
+      setIsError(false);
+    }
+
+    return ()=> {
+      localStorage.removeItem("error");
+      setIsError(false);
+    }
+
+  },[navigate,token,error]);
 
   return (
     <div className={styles.register}>
@@ -42,6 +58,7 @@ const Register = () => {
         <input type="text" name='password' value={userDetails.password} onChange={onChangeHandler} placeholder="Enter your password" />
         <Button bg='green' onClick={onSubmit} >REGISTER</Button>
       </div>
+      {isError && <div className={styles.error}><p>{error}</p></div>}
     </div>
   )
 }

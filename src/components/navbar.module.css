@@ -1,63 +1,194 @@
 #navbar {
-    min-height: 13vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 0.25vw solid rgb(77, 76, 76);
-    background-color: white;
+  min-height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.25vw solid rgb(23, 0, 41);
+  /* background-color: rgb(255, 255, 0); */
+  /* background-color: rgb(92, 255, 92); */
+  /* background: repeating-linear-gradient(
+    10deg,
+    rgb(2, 109, 25),
+    rgb(45, 236, 87) 1.5vw,
+    rgb(21, 224, 65) 1.5vw,
+    rgb(133, 255, 160) 1.5vw
+  ); */
+  /* background-color: white; */
+  /* background: linear-gradient(110deg, rgb(171, 78, 247) 30%, rgb(217, 170, 255) 60%, rgb(237, 215, 255) 60%); */
+  /* background: radial-gradient(rgb(171, 78, 247), rgb(207, 149, 255), rgb(217, 170, 255)); */
 }
 
-/* #navbar #logo {
-    
-} */
+#navbar #logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 3vw;
+  padding: 1vw;
+  /* background-color: blanchedalmond; */
+}
 
 #navbar #logo h1 {
-    font-size: 3vw;
-    margin-left: 3vw;
-    cursor: pointer;
+  font-size: 3vw;
+  cursor: pointer;
+}
+
+#navbar #logo .menu {
+  display: none;
 }
 
 #navbar #links ul {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 3vh;
-    /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 3vh;
+  /* background-color: aqua; */
 }
 
 #navbar #links ul li {
-    margin: 0 0.5vh;
-    /* padding: 0.5vw 1vw; */
+  margin: 0 0.5vh;
+  /* padding: 0.5vw 1vw; */
 }
 
 #navbar #links ul li a {
-    color: black;
-    padding: 0.5vw;
-    border: none;
-    border-radius: 0.5vw;
-    font-size: 1.5vw;
-    font-weight: bold;
-    cursor: pointer;
+  color: black;
+  padding: 0.5vw;
+  outline: none;
+  border: none;
+  border-radius: 0.5vw;
+  font-size: 1.5vw;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #navbar #links ul li a:hover {
-    color: white;
-    background-color: black;
-    transition: all ease-in-out 0.5s;
+  color: white;
+  background-color: black;
+  transition: all ease-in-out 0.5s;
 }
 
 #navbar #links ul li p {
-    color: black;
-    padding: 0.5vw;
-    border: none;
-    border-radius: 0.5vw;
-    font-size: 1.5vw;
-    font-weight: bold;
-    cursor: pointer;
+  color: black;
+  padding: 0.5vw;
+  border: none;
+  border-radius: 0.5vw;
+  font-size: 1.5vw;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #navbar #links ul li p:hover {
-    color: white;
-    background-color: black;
-    transition: all ease-in-out 0.5s;
+  color: white;
+  background-color: black;
+  transition: all ease-in-out 0.5s;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 480px) {
+
+  #navbar {
+    min-height: 6vh;
+    flex-direction: column;
+    border-bottom: 0.5vw solid rgb(23, 0, 41);
+  }
+
+  #navbar #logo {
+    width: 100%;
+    justify-content: center;
+    border-bottom: 0.5vw solid black;
+    margin-left: 0;
+    /* background-color: blanchedalmond; */
+  }
+
+  #navbar #logo h1 {
+    font-size: 6.5vw;
+    margin-right: 5vw;
+  }
+
+  #navbar #links ul {
+    margin-top: 1vh;
+    display: none;
+    width: 100%;
+    padding: 2vw;
+    justify-content: space-evenly;
+    margin-bottom: 2vh;
+    /* background-color: rgb(252, 237, 213); */
+  }
+
+  #navbar #links ul li a,
+  #navbar #links ul li p {
+    font-size: 3.5vw;
+  }
+
+  #navbar #logo .menu {
+    display: block;
+  }
+  
+}
+
+@media only screen and (min-width: 481px) and (max-width: 720px) {
+
+  #navbar {
+    min-height: 8vh;
+    flex-direction: column;
+    border-bottom: 0.5vw solid rgb(23, 0, 41);
+  }
+
+  #navbar #logo {
+    width: 100%;
+    justify-content: center;
+    border-bottom: 0.5vw solid black;
+    margin-left: 0;
+    /* background-color: blanchedalmond; */
+  }
+
+  #navbar #logo h1 {
+    font-size: 6vw;
+    margin-right: 5vw;
+  }
+
+  #navbar #links ul {
+    margin-top: 1vh;
+    display: none;
+    width: 100%;
+    padding: 2vw;
+    justify-content: space-evenly;
+    margin-bottom: 2vh;
+    /* background-color: rgb(252, 237, 213); */
+  }
+
+  #navbar #links ul li a,
+  #navbar #links ul li p {
+    font-size: 3.5vw;
+  }
+
+  #navbar #logo .menu {
+    display: block;
+  }
+
+}
+
+@media only screen and (min-width: 721px) and (max-width: 1024px) {
+
+  #navbar {
+    min-height: 12vh;
+    border-bottom: 0.3vw solid rgb(23, 0, 41);
+  }
+
+  #navbar #logo {
+    justify-content: center;
+    margin-left: 2.5vw;
+    /* background-color: blanchedalmond; */
+  }
+
+  #navbar #logo h1 {
+    font-size: 3.5vw;
+    margin-right: 5vw;
+  }
+
+  #navbar #links ul li a,
+  #navbar #links ul li p {
+    font-size: 2.2vw;
+  }
+
 }

@@ -3,11 +3,12 @@ import axios from "axios";
 export const fetchAlltodos = () => async (dispatch) => {
     const token = localStorage.getItem("token");
     const myheaders = { headers: { "auth-token": token } };
-    if(token) {
+    if (token) {
         try {
             const res = await axios.get("http://localhost:5000/api/todos/fetchAlltodos", myheaders);
-    
+
             if (res.data.success) {
+                localStorage.removeItem("error");
                 localStorage.setItem("todolist", JSON.stringify(res.data.todos));
                 return (dispatch) => {
                     dispatch({
@@ -19,6 +20,17 @@ export const fetchAlltodos = () => async (dispatch) => {
                     });
                 }
             }
+
+            if (res.data.error) {
+                localStorage.setItem("error", res.data.error);
+                return dispatch({
+                    type: "fetchalltodos",
+                    payload: {
+                        error: res.data.error
+                    }
+                });
+            }
+
         }
         catch (error) {
             return dispatch({
@@ -39,6 +51,7 @@ export const addTodo = (text, date) => async (dispatch) => {
         const res = await axios.post("http://localhost:5000/api/todos/addtodo", { text: text, date: date }, myheaders);
 
         if (res.data.success) {
+            localStorage.removeItem("error");
             return dispatch({
                 type: "addtodo",
                 payload: {
@@ -47,6 +60,16 @@ export const addTodo = (text, date) => async (dispatch) => {
                 }
             })
         }
+        if (res.data.error) {
+            localStorage.setItem("error", res.data.error);
+            return dispatch({
+                type: "addtodo",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+
     }
     catch (error) {
         return dispatch({
@@ -65,6 +88,7 @@ export const editTodo = (id, text, date) => async (dispatch) => {
         const res = await axios.put(`http://localhost:5000/api/todos/edittodo/${id}`, { text: text, date: date }, myheaders);
 
         if (res.data.success) {
+            localStorage.removeItem("error");
             return dispatch({
                 type: "edittodo",
                 payload: {
@@ -73,6 +97,17 @@ export const editTodo = (id, text, date) => async (dispatch) => {
                 }
             })
         }
+
+        if (res.data.error) {
+            localStorage.setItem("error", res.data.error);
+            return dispatch({
+                type: "edittodo",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+
     }
     catch (error) {
         return dispatch({
@@ -91,6 +126,7 @@ export const deleteTodo = (id) => async (dispatch) => {
         const res = await axios.delete(`http://localhost:5000/api/todos/deletetodo/${id}`, myheaders);
 
         if (res.data.success) {
+            localStorage.removeItem("error");
             return dispatch({
                 type: "deletetodo",
                 payload: {
@@ -99,6 +135,17 @@ export const deleteTodo = (id) => async (dispatch) => {
                 }
             })
         }
+
+        if (res.data.error) {
+            localStorage.setItem("error", res.data.error);
+            return dispatch({
+                type: "fetchalltodos",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+
     }
     catch (error) {
         return dispatch({
@@ -117,6 +164,7 @@ export const completeTodo = (id) => async (dispatch) => {
         const res = await axios.put(`http://localhost:5000/api/todos/complete/${id}`, {}, myheaders);
 
         if (res.data.success) {
+            localStorage.removeItem("error");
             return dispatch({
                 type: "completetodo",
                 payload: {
@@ -125,6 +173,17 @@ export const completeTodo = (id) => async (dispatch) => {
                 }
             })
         }
+
+        if (res.data.error) {
+            localStorage.setItem("error", res.data.error);
+            return dispatch({
+                type: "fetchalltodos",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+
     }
     catch (error) {
         return dispatch({
@@ -146,6 +205,7 @@ export const register = ({ name, username, email, password }) => async (dispatch
         });
 
         if (res.data.success) {
+            localStorage.removeItem("error");
             localStorage.setItem("token", res.data.authToken);
             return dispatch({
                 type: "register",
@@ -155,6 +215,17 @@ export const register = ({ name, username, email, password }) => async (dispatch
                 }
             })
         }
+
+        if (res.data.error) {
+            localStorage.setItem("error", res.data.error);
+            return dispatch({
+                type: "register",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+
     }
     catch (error) {
         return dispatch({
@@ -173,17 +244,29 @@ export const login = ({ email, password }) => async (dispatch) => {
             password: password
         });
 
+        if (res.data.error) {
+            localStorage.setItem("error", res.data.error);
+            return dispatch({
+                type: "login",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+
         if (res.data.success) {
+            localStorage.removeItem("error");
             localStorage.setItem("token", res.data.authToken);
             return dispatch({
                 type: "login",
                 payload: {
-                    token: res.data.authToken,
                     error: null,
+                    token: res.data.authToken,
                     todos: res.data.mytodos
                 }
             })
         }
+
     }
     catch (error) {
         return dispatch({
@@ -196,7 +279,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 }
 
 export const profile = () => async (dispatch) => {
-    const token = localStorage.getItem("todolist");
+    const token = localStorage.getItem("token");
     try {
         const res = await axios.get("http://localhost:5000/api/auth/profile", {
             headers: { "auth-token": token }
@@ -204,6 +287,7 @@ export const profile = () => async (dispatch) => {
 
         if (res.data.success) {
             localStorage.setItem("profile", JSON.stringify(res.data.user));
+            localStorage.removeItem("error");
             return dispatch({
                 type: "profile",
                 payload: {
@@ -212,6 +296,17 @@ export const profile = () => async (dispatch) => {
                 }
             })
         }
+
+        if (res.data.error) {
+            localStorage.setItem("error", res.data.error);
+            return dispatch({
+                type: "profile",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+
     }
     catch (error) {
         return dispatch({
@@ -224,7 +319,7 @@ export const profile = () => async (dispatch) => {
 }
 
 export const deleteuser = (id) => async (dispatch) => {
-    const token = localStorage.getItem("todolist");
+    const token = localStorage.getItem("token");
     try {
         const res = await axios.delete(`http://localhost:5000/api/auth/deleteuser/${id}`, {
             headers: { "auth-token": token },
@@ -234,6 +329,7 @@ export const deleteuser = (id) => async (dispatch) => {
             localStorage.removeItem("profile");
             localStorage.removeItem("token");
             localStorage.removeItem("todolist");
+            localStorage.removeItem("error");
             return dispatch({
                 type: "deleteuser",
                 payload: {
@@ -241,6 +337,17 @@ export const deleteuser = (id) => async (dispatch) => {
                 }
             })
         }
+
+        if (res.data.error) {
+            localStorage.setItem("error", res.data.error);
+            return dispatch({
+                type: "deleteuser",
+                payload: {
+                    error: res.data.error
+                }
+            });
+        }
+
     }
     catch (error) {
         return dispatch({
@@ -254,9 +361,17 @@ export const deleteuser = (id) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
     const token = localStorage.getItem("token");
-    if(token) {
+    localStorage.removeItem("error");
+    if (token) {
         return dispatch({
             type: "logout"
         })
     }
+}
+
+export const cancelError = () => async (dispatch) => {
+    localStorage.removeItem("error");
+    return dispatch({
+        type: "cancelerror"
+    });
 }

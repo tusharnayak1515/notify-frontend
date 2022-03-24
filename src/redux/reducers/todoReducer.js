@@ -11,7 +11,7 @@ if (localStorage.getItem("error") === null) {
     isError = null;
 }
 else {
-    isError = JSON.parse(localStorage.getItem("error"));
+    isError = localStorage.getItem("error");
 }
 
 const initTodo = {
@@ -34,7 +34,8 @@ const todoReducer = (state = initTodo, action) => {
             todos: [
                 ...state.todos,
                 mytodo
-            ]
+            ],
+            error: null
         }
     }
 
@@ -48,7 +49,8 @@ const todoReducer = (state = initTodo, action) => {
         }
         return {
             ...state,
-            todos: todos
+            todos: todos,
+            error: null
         }
     }
 
@@ -62,7 +64,8 @@ const todoReducer = (state = initTodo, action) => {
         }
         return {
             ...state,
-            todos: todos
+            todos: todos,
+            error: null
         }
     }
 
@@ -76,7 +79,8 @@ const todoReducer = (state = initTodo, action) => {
         }
         return {
             ...state,
-            todos: [...state.todos].map(todo => { return todo._id === mytodo._id ? mytodo : todo })
+            todos: [...state.todos].map(todo => { return todo._id === mytodo._id ? mytodo : todo }),
+            error: null
         }
     }
 
@@ -90,22 +94,38 @@ const todoReducer = (state = initTodo, action) => {
         }
         return {
             ...state,
-            todos: todos
+            todos: todos,
+            error: null
         }
     }
 
     else if (action.type === 'login') {
-        const { todos } = action.payload;
+        const { todos, error } = action.payload;
+        if(error) {
+            return {
+                ...state,
+                error: error
+            }
+        }
         return {
             ...state,
-            todos: todos
+            todos: todos,
+            error: null
         };
     }
 
     else if (action.type === 'logout') {
         return {
             ...state,
-            todos: []
+            todos: [],
+            error: null
+        };
+    }
+
+    else if (action.type === 'cancelerror') {
+        return {
+            ...state,
+            error: null
         };
     }
 

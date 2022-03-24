@@ -3,14 +3,11 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMarker, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { actionCreators } from "../redux";
+import Modal from "./Modal";
 
 import styles from "./todo.module.css";
-import TodoForm from "./TodoForm";
 
-const Todo = ({ todo }) => {
-  const [color, setColor] = React.useState("");
-  const [isComplete, setIsComplete] = React.useState(false);
-  const textstyle = { color: color };
+const Todo = ({ todo, profile }) => {
   const [edit, setEdit] = useState({
     _id: null,
     text: "",
@@ -18,11 +15,12 @@ const Todo = ({ todo }) => {
     isComplete: false,
   });
 
+  const [show, setShow] = useState(false);
+
   const dispatch = useDispatch();
 
   const onComplete = () => {
     dispatch(actionCreators.completeTodo(todo._id));
-    setIsComplete(complete=> !complete);
   };
 
   const onEdit = () => {
@@ -32,6 +30,7 @@ const Todo = ({ todo }) => {
       date: todo.date,
       isComplete: todo.isComplete,
     });
+    setShow(true);
   };
 
   const onDelete = () => {
@@ -39,36 +38,84 @@ const Todo = ({ todo }) => {
   };
 
   if (edit._id) {
-    return <TodoForm edit={edit} setEdit={setEdit} />;
+    return (
+      <Modal show={show} setShow={setShow} edit={edit} setEdit={setEdit} />
+    );
   }
 
   return (
-    <div
-      className={styles.todo}
-      style={{ backgroundColor: isComplete ? "" : "rgb(209, 208, 208)" }}
-    >
-      <FontAwesomeIcon
-        icon={faMarker}
-        onClick={onEdit}
-        style={{ cursor: "pointer" }}
-        className={styles.edit}
-      />
-      <h2
-        onClick={onComplete}
-        style={textstyle}
-        onMouseEnter={() => !todo.isComplete ? setColor("rgb(207, 126, 126)") : setColor("red")}
-        onMouseLeave={() => setColor("")}
-      >
-        {todo.text}
-      </h2>
-      <FontAwesomeIcon
-        icon={faTrash}
-        onClick={onDelete}
-        style={{ cursor: "pointer" }}
-        className={styles.delete}
-      />
-      {/* <h3>{todo.date}</h3> */}
-    </div>
+    <>
+      {profile===undefined ? (
+        <div
+          className={styles.todo}
+          style={{
+            opacity: todo.isComplete ? "0.5" : "1"
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faMarker}
+            onClick={onEdit}
+            style={{
+              cursor: "pointer",
+              pointerEvents: todo.isComplete ? "none" : "all",
+            }}
+            className={styles.edit}
+          />
+          <h2
+            onClick={onComplete}
+            className={
+              todo.isComplete ? styles.completedTodo : styles.normalTodo
+            }
+          >
+            {todo.text}
+          </h2>
+          <FontAwesomeIcon
+            icon={faTrash}
+            onClick={onDelete}
+            style={{
+              cursor: "pointer",
+              pointerEvents: todo.isComplete ? "none" : "all",
+            }}
+            className={styles.delete}
+          />
+          {/* <h3>{todo.date}</h3> */}
+        </div>
+      ) : (
+        <div
+          className={styles.todo}
+          style={{
+            opacity: todo.isComplete ? "0.6" : "1"
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faMarker}
+            onClick={onEdit}
+            style={{
+              cursor: "pointer",
+              pointerEvents: todo.isComplete ? "none" : "all",
+            }}
+            className={styles.edit}
+          />
+          <h2
+            onClick={onComplete}
+            className={
+              todo.isComplete ? styles.completedTodo : styles.normalTodo
+            }
+          >
+            {`${todo.text}-----${todo.date}`}
+          </h2>
+          <FontAwesomeIcon
+            icon={faTrash}
+            onClick={onDelete}
+            style={{
+              cursor: "pointer",
+              pointerEvents: todo.isComplete ? "none" : "all",
+            }}
+            className={styles.delete}
+          />
+        </div>
+      )}
+    </>
   );
 };
 

@@ -12,7 +12,7 @@
 }
 
 .todoform input {
-    font-size: 1.3rem;
+    font-size: 1.5vw;
     margin: 0 2vh;
     padding: 0.5vw 0.8vw;
     outline: none;
@@ -33,4 +33,95 @@
 .calender input {
     border: 0.2vw solid black;
     font-size: 1.5rem;
+}
+
+.todoform button {
+    margin-right: 1vw;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.error p {
+    padding: 0.5vw 0.8vw;
+    border: 0.2vw solid red;
+    border-radius: 1vw;
+    background-color: white;
+}
+
+
+/* Media Queries */
+
+@media only screen and (max-width: 480px) {
+
+    .todoform {
+        width: 100%;
+        margin: 1.5vh auto;
+        /* background-color: rgb(146, 43, 146); */
+    }
+
+    .todoform input {
+        font-size: 4vw;
+        margin: 0 1vh;
+        padding: 1.2vw 1.6vw;
+        border: 0.5vw solid black;
+        border-radius: 1vw;
+    }
+
+    .todoform button {
+        margin-right: 2vw;
+    }
+
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 720px) {
+
+    .todoform {
+        width: 100%;
+        margin: 1.5vh auto;
+        /* background-color: rgb(146, 43, 146); */
+    }
+
+    .todoform input {
+        font-size: 3.8vw;
+        margin: 0 1vh;
+        padding: 1vw 1.5vw;
+        border: 0.5vw solid black;
+        border-radius: 1vw;
+    }
+
+    .todoform button {
+        margin-right: 2vw;
+    }
+
+}
+
+@media only screen and (min-width: 721px) and (max-width: 1024px) {
+
+    .todoform {
+        width: 50%;
+        margin: 3vh auto;
+        /* background-color: rgb(146, 43, 146); */
+    }
+
+    .todoform input {
+        font-size: 2vw;
+        margin: 0 2vh;
+        padding: 0.7vw 1vw;
+        border: 0.3vw solid black;
+        border-radius: 0.7vw;
+    }
+
+    .todoform button {
+        margin-right: 1vw;
+    }
+
 }

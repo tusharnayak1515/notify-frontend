@@ -1,0 +1,132 @@
+.profile {
+  min-height: 87vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  /* background-color: rgb(242, 226, 255); */
+  /* background: repeating-linear-gradient(
+    0deg,
+    rgb(171, 78, 247),
+    rgb(217, 170, 255) 1.5vw,
+    rgb(237, 215, 255) 1.5vw,
+    rgb(255, 203, 255) 1.5vw
+  ); */
+  /* background-color: violet; */
+}
+
+.profile .userDetails {
+  margin-top: 5vh;
+  padding: 1vw 2vw;
+  border: 0.2vw solid black;
+  border-radius: 1vw;
+}
+
+.profile .name,
+.profile .username,
+.profile .email {
+  text-align: center;
+}
+
+.profile button {
+  margin: 2vh 0 5vh 0;
+}
+
+.profile .todoHead {
+  font-size: 3vw;
+  text-transform: uppercase;
+  margin-top: 5vh;
+  padding: 0.5vw 1vw;
+  border: 0.2vw solid black;
+  border-radius: 0.7vw;
+}
+
+.profile .todos {
+  width: 40%;
+  margin: 3vh auto;
+  display: flex;
+  flex-direction: column;
+  /* background-color: rgb(217, 170, 255); */
+}
+
+/* Media Queries */
+@media only screen and (max-width: 480px) {
+
+  .profile .userDetails {
+    margin-top: 3vh;
+    padding: 2vw 4vw;
+    border: 0.5vw solid black;
+    border-radius: 2vw;
+  }
+
+  .profile .todoHead {
+    font-size: 6vw;
+    margin-top: 3vh;
+    padding: 1.2vw 2.2vw;
+    border: 0.5vw solid black;
+    border-radius: 1.5vw;
+  }
+
+  .profile button {
+    margin: 1vh 0 3vh 0;
+  }
+
+  .profile .todos {
+    width: 80%;
+    margin: 1.5vh auto;
+    /* background-color: rgb(217, 170, 255); */
+  }
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 720px) {
+
+  .profile .userDetails {
+    margin-top: 3vh;
+    padding: 2vw 4vw;
+    border: 0.5vw solid black;
+    border-radius: 2vw;
+  }
+
+  .profile .todoHead {
+    font-size: 5.5vw;
+    margin-top: 3vh;
+    padding: 1.2vw 2.2vw;
+    border: 0.5vw solid black;
+    border-radius: 1.5vw;
+  }
+
+  .profile button {
+    margin: 1vh 0 3vh 0;
+  }
+
+  .profile .todos {
+    width: 80%;
+    margin: 1.5vh auto;
+    /* background-color: rgb(217, 170, 255); */
+  }
+
+}
+
+@media only screen and (min-width: 721px) and (max-width: 1024px) {
+
+  .profile .userDetails {
+    padding: 1.2vw 2.2vw;
+    border: 0.3vw solid black;
+    border-radius: 1.2vw;
+  }
+
+  .profile .todoHead {
+    font-size: 3.5vw;
+    margin-top: 4.5vh;
+    padding: 0.7vw 1.2vw;
+    border: 0.3vw solid black;
+    border-radius: 0.8vw;
+  }
+
+  .profile .todos {
+    width: 50%;
+    /* background-color: rgb(217, 170, 255); */
+  }
+
+}

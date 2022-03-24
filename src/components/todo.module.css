@@ -1,24 +1,81 @@
 .todo {
-    width: 80%;
-    margin: 1vh auto;
-    padding: 0.5vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 0.2vw solid azure;
-    border-radius: 0.5vw;
-    /* background-color: rgb(209, 208, 208); */
+  width: 90%;
+  margin: 1vh auto;
+  padding: 0.5vw;
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
+  align-items: center;
+  border: 0.2vw solid black;
+  border-radius: 0.5vw;
+  box-shadow: 0.2vw 0.2vw 0.2vw grey;
 }
 
 .todo h2 {
-    cursor: pointer;
-    margin: 0 1vw;
+  cursor: pointer;
+  margin: 0 1vw;
+  padding: 0 0.5vw;
+  /* background-color: aqua; */
 }
 
 .todo .edit:hover {
-    color: rgb(201, 130, 0);
+  color: rgb(201, 130, 0);
 }
 
 .todo .delete:hover {
-    color: red;
+  color: red;
+}
+
+.todo .completedTodo {
+  text-decoration: line-through;
+  color: green;
+}
+
+.todo .completedTodo:hover {
+  text-decoration: none;
+  color: red;
+}
+
+.todo .normalTodo {
+  color: black;
+}
+
+.todo .normalTodo:hover {
+  color: rgb(162, 60, 245);
+}
+
+/* Media Queries */
+@media only screen and (max-width: 480px) {
+
+  .todo {
+    width: 100%;
+    padding: 1.5vw;
+    border: 0.5vw solid black;
+    border-radius: 1vw;
+    box-shadow: 0.4vw 0.4vw 0.4vw grey;
+  }
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 720px) {
+
+  .todo {
+    width: 100%;
+    padding: 1.5vw;
+    border: 0.5vw solid black;
+    border-radius: 1vw;
+    box-shadow: 0.4vw 0.4vw 0.4vw grey;
+  }
+
+}
+
+@media only screen and (min-width: 721px) and (max-width: 1024px) {
+
+  .todo {
+    padding: 0.7vw;
+    border: 0.3vw solid black;
+    border-radius: 0.7vw;
+    box-shadow: 0.3vw 0.3vw 0.3vw grey;
+  }
+
 }

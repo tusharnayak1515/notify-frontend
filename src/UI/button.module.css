@@ -1,16 +1,50 @@
 .btn {
-    font-size: 1.3rem;
+    font-size: 1.5vw;
     color: white;
     padding: 0.5vw 1vw;
     outline: none;
     border: 0.2vw solid black;
     border-radius: 0.5vw;
     cursor: pointer;
-    /* background-color: rgb(92, 153, 1); */
+    /* background-color: rgb(11, 117, 11) !important; */
     /* background-color: rgb(108, 0, 197); */
 }
 
 .btn:hover {
     opacity: 0.85;
     /* background-color: rgb(84, 1, 153); */
+}
+
+/* Media Queries */
+@media only screen and (max-width: 480px) {
+
+    .btn {
+        font-size: 4vw;
+        padding: 1.2vw 1.6vw;
+        border: 0.5vw solid black;
+        border-radius: 1vw;
+    }
+
+}
+
+@media only screen and (min-width: 481px) and (max-width: 720px) {
+
+    .btn {
+        font-size: 3.8vw;
+        padding: 1vw 1.5vw;
+        border: 0.5vw solid black;
+        border-radius: 1vw;
+    }
+
+}
+
+@media only screen and (min-width: 721px) and (max-width: 1024px) {
+
+    .btn {
+        font-size: 2vw;
+        padding: 0.7vw 1vw;
+        border: 0.3vw solid black;
+        border-radius: 0.7vw;
+    }
+
 }
